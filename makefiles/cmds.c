@@ -1,11 +1,3 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
-#include<unistd.h>
-#include<dirent.h>
-#include <sys/wait.h>
-#include <sys/stat.h>
-#include <fcntl.h>
 #include "cmds.h"
 
 int fun_cd(char** char_list){
@@ -110,7 +102,7 @@ int fun_remove_dir(char** char_list)
             if ( (0 == strcmp(cur_dir, dp->d_name)) || (0 == strcmp(up_dir, dp->d_name)) ) {
                 continue;
             }
-            
+
             sprintf(dir_name, "%s/%s", dir, dp->d_name);
             char_list[1] = dir_name;
             fun_remove_dir(char_list);   // 递归调用
@@ -119,10 +111,10 @@ int fun_remove_dir(char** char_list)
 
         rmdir(dir);     // 删除空目录
     } else {
-        perror("unknow file type!");    
+        perror("unknow file type!");
     }
 
     }
-    return 1;   
+    return 1;
 }
 

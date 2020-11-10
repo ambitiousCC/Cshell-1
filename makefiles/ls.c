@@ -1,14 +1,4 @@
 #include "ls.h"
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <time.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <dirent.h>
-#include <unistd.h>
-#include <pwd.h>
-#include <grp.h>
 char* get_mode(mode_t m,char* str)//显示文件读写权限函数
 {
    if(S_ISREG(m))
@@ -61,7 +51,7 @@ void time_ch(time_t num)//通过秒数来计算日期
    	day++;
    	if(month==1 && day == 32)
    	{
-   		month++; 
+   		month++;
    		day =1;
    	}
    	else if(month == 2 && day ==_time(year)+1)
@@ -120,7 +110,7 @@ void time_ch(time_t num)//通过秒数来计算日期
    		day=1;
    		year++;
    	}
-   	
+
    }
    int hour = num/3600;
    int minute =num/60 -hour*60;
