@@ -1,12 +1,3 @@
-#include <stdio.h>
-#include <unistd.h>
-#include <sys/stat.h>
-#include <string.h>
-#include <stdlib.h>
-#include <sys/types.h>
-#include <dirent.h>
-#include <pwd.h>
-
 #define MAX_LEN 20
 struct ps_info *trav_dir(char dir[]);
 int read_info(char d_name[],struct ps_info *p1);
