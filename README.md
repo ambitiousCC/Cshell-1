@@ -12,7 +12,7 @@
 - [展望](#展望)
 - [如何贡献](#如何贡献)
 
-##说明
+## 说明
 此仓库目前由[@LiFulian](https://github.com/LiFulian)[@cuichenxu](https://github.com/cuichenxu)[@ambitiousCC](https://github.com/ambitiousCC)共同开发而成
 
 目前已经完成基本shell命令13个(by 2020.11.12)
