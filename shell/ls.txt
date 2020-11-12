@@ -1,0 +1,13 @@
+cmds.c
+cmds.h
+cmds.o
+ls.c
+ls.h
+ls.o
+ls.txt
+main.c
+makefile
+ps.c
+ps.h
+ps.o
+shell_group26

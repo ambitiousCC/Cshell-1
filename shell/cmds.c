@@ -85,7 +85,7 @@ int fun_remove_dir(char** char_list)
     const char *dir = char_list[1];
     char cur_dir[] = ".";
     char up_dir[] = "..";
-    char dir_name[128];
+    char dir_name[1024];
     DIR *dirp;
     struct dirent *dp;
     struct stat dir_stat;
