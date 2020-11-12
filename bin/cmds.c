@@ -5,7 +5,11 @@
 #include<dirent.h>
 #include <sys/wait.h>
 #include <sys/stat.h>
+#include <sys/types.h>
 #include <fcntl.h>
+#include <errno.h>
+#include <libgen.h>
+
 #include "cmds.h"
 
 int fun_cd(char** char_list){
@@ -42,6 +46,23 @@ int fun_pwd(char** char_list){
     }
 }
 
+int fun_rm(char** argv)
+{
+    if(argv[3]==NULL)
+    {
+        printf("Usage:%s filename\n",basename(argv[0]));
+        exit(0);
+    }
+
+    if(unlink(argv[1])!=0)
+    {
+        perror("ulink");
+        exit(-1);
+    }
+
+    printf("remove %s success!\n",basename(argv[1]));
+    return 1;
+}
 
 int fun_exit(char** char_list){
 
@@ -85,7 +106,7 @@ int fun_remove_dir(char** char_list)
     const char *dir = char_list[1];
     char cur_dir[] = ".";
     char up_dir[] = "..";
-    char dir_name[1024];
+    char dir_name[128];
     DIR *dirp;
     struct dirent *dp;
     struct stat dir_stat;

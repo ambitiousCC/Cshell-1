@@ -1,6 +1,8 @@
 #include "cmds.h"
 #include "ls.h"
 #include "ps.h"
+#include "tree.h"
+#include "copy.h"
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
@@ -20,10 +22,13 @@ char *cmder[] = {
     "ls",
     "ps",
     "cd",
+    "rm",
     "pwd",
     "help",
     "exit",
     "echo",
+    "copy",
+    "tree",
     "touch",
     "mkdir",
     "remove_dir"
@@ -50,10 +55,13 @@ int (*funcs[])(char**) = {
     &fun_ls,//外部文件里面
     &fun_ps,//外部文件里面
     &fun_cd,
+    &fun_rm,
     &fun_pwd,
     &fun_help,
     &fun_exit,
     &fun_echo,
+    &fun_copy,
+    &fun_tree,
     &fun_touch,
     &fun_mkdir,
     &fun_remove_dir

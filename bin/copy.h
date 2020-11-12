@@ -1,0 +1,1 @@
+int fun_copy(char **argv);
