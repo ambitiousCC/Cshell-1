@@ -1,8 +1,14 @@
+#include "cmds.h"
+#include "ls.h"
+#include "ps.h"
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
 #include<unistd.h>
+#include<dirent.h>
 #include <sys/wait.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 #include <readline/readline.h>
 #include <readline/history.h> //gcc main.c -lreadline
 
@@ -10,111 +16,48 @@
 #define BLOD  "\001\033[1m\002"                 // 强调、加粗、高亮
 #define BEGIN(x,y) "\001\033["#x";"#y"m\002"    // x: 背景，y: 前景
 
-
 char *cmder[] = {
+    "ls",
+    "ps",
     "cd",
     "pwd",
     "help",
     "exit",
     "echo",
-    "touch"
+    "touch",
+    "mkdir",
+    "remove_dir"
 };
 
 int long_cmd(){
     return sizeof(cmder)/sizeof(char*);
 }
-
-int fun_cd(char** char_list){
-    if(char_list[1] == NULL){
-        printf("Please enter the correct directory\n");
-    }else{
-        if(chdir(char_list[1]) != 0){
-            perror("myshell");
-        }
-    }
-    return 1;
-}
-
-int fun_pwd(char** char_list){
-    int bufsize = 1024;
-    char *buffer = malloc(sizeof(char)*bufsize);
-    if (!buffer){
-        printf("allocation error1\n");
-        exit(1);
-    }
-    while (1){
-        if(getcwd(buffer, bufsize) == NULL){
-            bufsize += bufsize;
-            buffer = realloc(buffer, sizeof(char)*bufsize);
-            if (!buffer){
-                printf("allocation error2\n");
-                exit(1);
-                }
-        }else{
-            printf("current working directory : %s\n", buffer);
-            free(buffer);
-            return 1;
-        }
-    }
-}
-
 int (fun_help)(char** char_list){
+    int space=40;
     int i;
-    printf("---------------------myshell---------------------\n");
-    printf("Type program names and arguments, and hit enter.\n");
-    printf("-----------The following are built in:-----------\n");
+    printf("-----------------崔晨旭、崔秦、李福连的shell-------------------------\n");
+    printf("-----------------The following are support:-----------------------\n");
     for ( i = 0; i < long_cmd(); i++){
-        printf("%s\n", cmder[i]);
+        printf("%*s\n",space, cmder[i]);
     }
-    printf("Use the man command for information on other programs.\n");
-    printf("-------Support for simple pipes and redirects---------\n");
-    printf("------------------------------------------------------\n");
+    printf("%*s\n", space, "-----------history");
+    printf("%*s\n", space, "------simple pipes");
+    printf("%*s\n", space, "---------redirects");
+    printf("------------------------------------------------------------------\n");
     return 1;  
 }
-
-int fun_exit(char** char_list){
-    printf("-----------------------goodbye-----------------------\n");
-    return 0;
-}
-
-int fun_echo(char** char_list){
-    int i;
-    if (char_list[1] == NULL){
-        printf("Enter correct output.\n");
-    }else{
-        for ( i = 1; char_list[i] != NULL; i++)
-        {
-            printf("%s ", char_list[i] );
-        }
-        printf("\n");
-    }
-    return 1;
-}
-
-int fun_touch(char** char_list){
-    int i;
-    if (char_list[1]==NULL) {
-    	fprintf(stderr,"input error\n");
-    } else {
-    	for ( i =1; char_list[i] !=NULL ; i++)
-	{
-		FILE *file = NULL;
-		file = fopen(char_list[i],"rw");
-		fclose(file);
-	}
-    }
-    return 1;
-}
-
 int (*funcs[])(char**) = {
+    &fun_ls,//外部文件里面
+    &fun_ps,//外部文件里面
     &fun_cd,
     &fun_pwd,
     &fun_help,
     &fun_exit,
     &fun_echo,
-    &fun_touch
+    &fun_touch,
+    &fun_mkdir,
+    &fun_remove_dir
 };
-
 int process(char** char_list){
     pid_t pid = fork(),wpid;
     int status;
@@ -349,17 +292,35 @@ int execute_line(char *line){
     return sample;
 }
 
+char *current_pwd_buffer;
+void fresh_pwd(){
+    int bufsize = 1024;
+    current_pwd_buffer = malloc(sizeof(char)*bufsize);
+    if (!current_pwd_buffer){
+        printf("allocation error1\n");
+        exit(1);
+    }
+    while (1){
+        if(getcwd(current_pwd_buffer, bufsize) == NULL){
+            bufsize += bufsize;
+           current_pwd_buffer = realloc(current_pwd_buffer, sizeof(char)*bufsize);
+            }else{
+            break;
+        }
+    }
+}
 int loop() {
     char *line;
     int state = 1;
-
     do{
+        fresh_pwd();//每次开始刷新一下当前工作路径
         //dup()用来复制参数oldfd 所指的文件描述词, 并将它返回. 此新的文件描述词和参数oldfd 指的是同一个文件, 共享所有的锁定、读写位置和各项权限或旗标.
         int s_fd_out = dup(STDOUT_FILENO); 
         int s_fd_in = dup(STDIN_FILENO);
         //printf("myshell-> ");
         //line = shell_readline();
-        line = readline(BEGIN(49, 34)"Myshell->  "CLOSE);  //readline是一个动态库，编译的时候需要加上　-lreadline
+        printf("OurShell: %s",current_pwd_buffer);//打印提示：路径
+        line = readline(BEGIN(49, 34)"-> "CLOSE);  //readline是一个动态库，编译的时候需要加上　-lreadline
         // 
         if (!line){
             printf("allocation error\n");
