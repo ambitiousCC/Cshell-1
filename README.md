@@ -28,11 +28,11 @@
 
 ### 目录介绍
 
-|README.md 		
+~|README.md 		
 |run.sh 		运行程序
 |需求分析.docx
 |bin 			源码
-~--|cmds.c
+--|cmds.c
 --|cmds.h
 --|cmds.o
 --|ls.c
