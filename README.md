@@ -32,7 +32,7 @@
 |run.sh 		运行程序
 |需求分析.docx
 |bin 			源码
---|cmds.c
+~--|cmds.c
 --|cmds.h
 --|cmds.o
 --|ls.c
@@ -46,7 +46,7 @@
 --|tree.c
 --|tree.h
 --|copy.c
---|copy.h
+--|copy.h~
 
 ### 运行
 
