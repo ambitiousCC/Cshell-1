@@ -26,27 +26,6 @@
 ## 使用
 [![Linux GCC](https://img.shields.io/badge/Linux-GCC-yellow)](https://github.com/cuichenxu/Cshell)
 
-### 目录介绍
-
-```powershell
-
-.
-├── bin
-│   ├── cmds.c
-│   ├── cmds.h
-│   ├── copy.c
-│   ├── copy.h
-│   ├── ls.c
-│   ├── ls.h
-│   ├── main.c
-│   ├── makefile
-│   ├── ps.c
-│   ├── ps.h
-│   ├── tree.c
-│   └── tree.h
-├── README.md	
-└── run.sh	
-```
 ### 运行
 
 直接运行`run.sh`即可

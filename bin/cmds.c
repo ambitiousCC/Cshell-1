@@ -205,5 +205,6 @@ int fun_mv(char** argv)
     }
     remove(argv[1]);  //删除源文件
     fclose(source);
+    printf("mv %s success!\n",basename(argv[1]));
     return 1;
 }
