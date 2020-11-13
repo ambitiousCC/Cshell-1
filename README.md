@@ -28,29 +28,29 @@
 
 ### 目录介绍
 
-|README.md 		
-|run.sh 		运行程序
-|需求分析.docx
-|bin 			源码
---|cmds.c
---|cmds.h
---|cmds.o
---|ls.c
---|ls.h
---|ls.o
---|main.c
---|makefile 	make
---|ps.c
---|ps.h
---|ps.o
---|tree.c
---|tree.h
---|copy.c
---|copy.h
+```powershell
 
+.
+├── bin
+│   ├── cmds.c
+│   ├── cmds.h
+│   ├── copy.c
+│   ├── copy.h
+│   ├── ls.c
+│   ├── ls.h
+│   ├── main.c
+│   ├── makefile
+│   ├── ps.c
+│   ├── ps.h
+│   ├── tree.c
+│   └── tree.h
+├── README.md	
+└── run.sh	
+```
 ### 运行
 
 直接运行`run.sh`即可
+
 ```powershell
 $ chmod a+x run.sh
 $ ./run.sh
