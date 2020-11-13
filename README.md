@@ -26,28 +26,6 @@
 ## 使用
 [![Linux GCC](https://img.shields.io/badge/Linux-GCC-yellow)](https://github.com/cuichenxu/Cshell)
 
-### 目录介绍
-
-~|README.md 		
-|run.sh 		运行程序
-|需求分析.docx
-|bin 			源码
---|cmds.c
---|cmds.h
---|cmds.o
---|ls.c
---|ls.h
---|ls.o
---|main.c
---|makefile 	make
---|ps.c
---|ps.h
---|ps.o
---|tree.c
---|tree.h
---|copy.c
---|copy.h~
-
 ### 运行
 
 直接运行`run.sh`即可
