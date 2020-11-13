@@ -23,6 +23,7 @@ char *cmder[] = {
     "ps",
     "cd",
     "rm",
+    "mv"
     "pwd",
     "help",
     "exit",
@@ -56,6 +57,7 @@ int (*funcs[])(char**) = {
     &fun_ps,//外部文件里面
     &fun_cd,
     &fun_rm,
+    &fun_mv,
     &fun_pwd,
     &fun_help,
     &fun_exit,

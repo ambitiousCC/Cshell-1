@@ -1,5 +1,6 @@
 int fun_cd(char** char_list);
 int fun_rm(char** argv);
+int fun_mv(char** mv);
 int fun_pwd(char** char_list);
 int fun_exit(char** char_list);
 int fun_echo(char** char_list);
