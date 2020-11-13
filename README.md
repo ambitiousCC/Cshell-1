@@ -66,6 +66,10 @@ $ ./run.sh
 2. 类型转换问题如`(char*)malloc(val);`
 3. 动态链接库readline，需要执行:
 ```powershell
+# Debian
+$sudo apt-get install libreadline-dev
+
+#centos
 $ yum install libtermcap-devel ncurses-devel libevent-devel readline-devel
 ```
 
