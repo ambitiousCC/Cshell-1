@@ -9,7 +9,6 @@
 #include <fcntl.h>
 #include <errno.h>
 #include <libgen.h>
-
 #include "cmds.h"
 
 int fun_cd(char** char_list){
@@ -153,7 +152,7 @@ int fun_mv(char** argv)
     if(source==NULL)
     {
         perror ("file no exsit!\n");
-        return ;
+        exit(0);
     }
     else
     {

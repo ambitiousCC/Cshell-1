@@ -19,11 +19,11 @@
 #define BEGIN(x,y) "\001\033["#x";"#y"m\002"    // x: 背景，y: 前景
 
 char *cmder[] = {
-    "ls",
+    "ll",
     "ps",
     "cd",
     "rm",
-    "mv"
+    "mv",
     "pwd",
     "help",
     "exit",
